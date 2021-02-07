@@ -19,21 +19,23 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         CommandScheduler.getInstance().run();
         robotContainer.displayShuffleboard();
-        if(SmartDashboard.getBoolean("Testing", false)) robotContainer.tuningPeriodic();
+        if(SmartDashboard.getBoolean("Testing", false)) {
+            robotContainer.tuningPeriodic();
+        }
     }
 
     @Override
     public void autonomousInit() {
         autoCommand = robotContainer.getAutoCommand();
 
-        if (autoCommand != null) {
+        if(autoCommand != null) {
             autoCommand.schedule();
         }
     }
 
     @Override
     public void teleopInit() {
-        if (autoCommand != null) {
+        if(autoCommand != null) {
             autoCommand.cancel();
         }
     }
